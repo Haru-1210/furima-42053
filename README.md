@@ -2,53 +2,47 @@
 
 ## users テーブル
 
-| Column              | Type      | Options                   |
-| ------------------- | --------- | ------------------------- |
-| id                  | int       | null: false, unique: true |
-| email               | string    | null: false, unique: true |
-| name                | string    | null: false               |
-| password            | string    | null: false               |
+| Column             | Type      | Options                   |
+| ------------------ | --------- | ------------------------- |
+| nickname           | string    | null: false               |
+| email              | string    | null: false, unique: true |
+| encrypted_password | string    | null: false               |
+| last_name          | string    | null: false               |
+| first_name         | string    | null: false               |
+| last_name_kana     | string    | null: false               |
+| first_name_kane    | string    | null: false               |
+| birthdate          | date      | null: false               |
 
 ## products テーブル
 
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | ------------------------------ |
-| id                  | int        | null: false, unique: true      |
-| user_id             | references | null: false, foreign_key: true |
-| name                | string     | null: false                    |
-| price               | int        | null: false                    |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| item_images        | references | null: false, foreign_key: true |
+| items              | string     | null: false                    |
+| description        | text       | null: false                    |
+| category_id        | string     | null: false                    |
+| condition_id       | string     | null: false                    |
+| shipping_charge_id | string     | null: false                    |
+| shipping_area_id   | string     | null: false                    |
+| shipping_day_id    | string     | null: false                    |
+| price              | int        | null: false                    |
+| user               | references | null: false, foreign_key: true |
+
 
 ## orders テーブル
 
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | ------------------------------ |
-| id                  | int        | null: false, unique: true      |
-| user_id             | references | null: false, foreign_key: true |
-| shipping_address_id | references | null: false, foreign_key: true |
-| status              | string     | null: false                    |
-| total_price         | int        | null: false                    |
-
-## order_items テーブル
-
-| Column                | Type       | Options                        |
-| --------------------- | ---------- | ------------------------------ |
-| id                    | int        | null: false, unique: true      |
-| product_id            | references | null: false, foreign_key: true |
-| order_id              | references | null: false, foreign_key: true |
-| quantity              | int        | null: false                    |
-| price                 | int        | null: false                    |
-| subtotal              | int        | null: false                    |
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| items   | references | null: false, foreign_key: true |
 
 ## shipping_addresses テーブル
 
-| Column                | Type       | Options                        |
-| --------------------- | ---------- | ------------------------------ |
-| id                    | int        | null: false, unique: true      |
-| user_id               | references | null: false, foreign_key: true |
-| zip_code              | string     | null: false                    |
-| prefecture            | string     | null: false                    |
-| city                  | string     | null: false                    |
-| address_line1         | string     | null: false                    |
-| address_line2         | string     | null: true                     |
-| recipient_name        | string     | null: false                    |
-| phone_number          | string     | null: true                     |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| zip_code_id   | int        | null: false                    |
+| prefecture_id | int        | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| phone_number  | string     | null: true                     |
+| order         | references | null: false, foreign_key: true |

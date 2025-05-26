@@ -13,36 +13,51 @@
 | first_name_kane    | string    | null: false               |
 | birthdate          | date      | null: false               |
 
+### Association
+- has_many :products
+- has_many :orders
+
 ## products テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| item_images        | references | null: false, foreign_key: true |
-| items              | string     | null: false                    |
+| item_name          | string     | null: false                    |
 | description        | text       | null: false                    |
-| category_id        | string     | null: false                    |
-| condition_id       | string     | null: false                    |
-| shipping_charge_id | string     | null: false                    |
-| shipping_area_id   | string     | null: false                    |
-| shipping_day_id    | string     | null: false                    |
+| category_id        | int        | null: false                    |
+| condition_id       | int        | null: false                    |
+| shipping_charge_id | int        | null: false                    |
+| prefecture_id      | int        | null: false                    |
+| shipping_day_id    | int        | null: false                    |
 | price              | int        | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
+### Association
+- belongs_to :user
+- has_one :order
 
 ## orders テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | user    | references | null: false, foreign_key: true |
-| items   | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :product
+- has_one :shipping_address
 
 ## shipping_addresses テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| zip_code_id   | int        | null: false                    |
-| prefecture_id | int        | null: false                    |
-| city          | string     | null: false                    |
-| address       | string     | null: false                    |
-| phone_number  | string     | null: true                     |
-| order         | references | null: false, foreign_key: true |
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| zip_code       | string     | null: false                    |
+| prefecture_id  | int        | null: false                    |
+| city           | string     | null: false                    |
+| street_address | string     | null: false                    |
+| building_name  | string     |                                |
+| phone_number   | string     | null: false, unique: true      |
+| order          | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :order

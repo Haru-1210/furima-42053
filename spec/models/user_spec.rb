@@ -65,10 +65,11 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password は英数字の混合である必要があります')
       end
 
-      it 'passwordが英字と数字を含んでいれば登録できる' do
+      it 'passwordとpassword（確認用）が不一致だと登録できない' do
         @user.password = 'abc123'
-        @user.password_confirmation = @user.password
-        expect(@user).to be_valid
+        @user.password_confirmation = 'xyz789'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
 

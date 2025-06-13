@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     @Item = Item.new
   end
 
-  def created
+  def create
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path, notice: '商品を出品しました。'
@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to item_params(@item), notice: '商品情報を更新しました。'
+      redirect_to @item, notice: '商品情報を更新しました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params,require(:item).permit(
+    params.require(:item).permit(
       :image, :item_name, :description, :category_id, :condition_id,
       :shipping_charge_id, :prefecture_id, :shipping_day_id, :price
     )

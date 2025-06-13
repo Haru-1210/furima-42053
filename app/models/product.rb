@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
+
   belongs_to :user
   belongs_to :category
   belongs_to :condition
@@ -13,10 +14,15 @@ class Product < ApplicationRecord
 
   validates :price, numericality: {
     only_integer: true,
-    greater_than_or_equal_to: 300,
-    less_than_or_equal_to: 9_999_999
+    greater_than: 300,
+    less_than: 9_999_999
   }
 
-  validates :category_id, :condition_id, :shipping_charge_id, :prefecture_id, :shipping_day_id,
-            numericality: { other_than: 1, message: "can't be blank" }
+ with_options numericality: { other_than: 1, message: "can't be blank" } do
+    validates :category_id
+    validates :condition_id
+    validates :shipping_charge_id
+    validates :prefecture_id
+    validates :shipping_day_id
+  end
 end

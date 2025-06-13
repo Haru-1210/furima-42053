@@ -3,24 +3,23 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @items = Item.all.order(created_at: :desc)
-  end
-
-  def show
+    @items = Item.all.order('created_at: DESC')
   end
 
   def new
     @item = Item.new
   end
 
-
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path, notice: '商品を出品しました。'
+      redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
+  end
+
+  def show
   end
 
   def edit
@@ -28,25 +27,29 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to @item, notice: '商品情報を更新しました。'
+      redirect_to root_path
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
   def destroy
-    @item.destroy
-    redirect_to root_path, notice: '商品を削除しました。'
+    if @item.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(
+      :image, :item_name, :description, :category_id, :condition_id,:shipping_charge_id, 
+      :prefecture_id, :shipping_day_id, :price. :user_id).merge(user_id: current_user.id)
   end
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def item_params
-    params.require(:item).permit(
-      :image, :item_name, :description, :category_id, :condition_id,
-      :shipping_charge_id, :prefecture_id, :shipping_day_id, :price
-    )
   end
 end

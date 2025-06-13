@@ -1,6 +1,9 @@
 class Category < ActiveHash::Base
+  include ActiveHash::Associations
+  has_many :product
+
   self.data = [
-    { id: 1, name: '---' },
+    { id: 1, name: '--' },
     { id: 2, name: 'メンズ' },
     { id: 3, name: 'レディース' },
     { id: 4, name: 'ベビー・キッズ' },
@@ -12,8 +15,5 @@ class Category < ActiveHash::Base
     { id: 10, name: 'ハンドメイド' },
     { id: 11, name: 'その他' }
   ]
-
-  include ActiveHash::Associations
-  has_many :products
   
 end

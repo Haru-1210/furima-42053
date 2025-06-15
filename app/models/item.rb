@@ -3,7 +3,6 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
 
-  belongs_to :category
   belongs_to :user
   belongs_to :category
   belongs_to :condition
@@ -14,10 +13,10 @@ class Item < ApplicationRecord
   validates :item_name,          presence: true
   validates :description,        presence: true
   validates :category_id,        presence: true, numericality: { other_than: 0 }
-  validates :condition_id,       presence: true
-  validates :shipping_charge_id, presence: true
-  validates :prefecture_id,      presence: true
-  validates :shipping_day_id,    presence: true
+  validates :condition_id,       presence: true, numericality: { other_than: 0 }
+  validates :shipping_charge_id, presence: true, numericality: { other_than: 0 }
+  validates :prefecture_id,      presence: true, numericality: { other_than: 0 }
+  validates :shipping_day_id,    presence: true, numericality: { other_than: 0 }
   validates :image,              presence: true
 
   validates :price, numericality: {

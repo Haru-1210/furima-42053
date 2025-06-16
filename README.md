@@ -30,8 +30,6 @@
 | shipping_day_id    | int        | null: false                    |
 | price              | int        | null: false                    |
 | user               | references | null: false, foreign_key: true |
-| created_at         | datetime   | null: false                    |
-| updated_at         | datetime   | null: false                    |
 
 ### Association
 - belongs_to :user

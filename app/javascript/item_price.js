@@ -18,3 +18,6 @@ window.addEventListener('turbo:load', () => {
     profitDom.innerHTML = profit;
   });
 });
+
+window.addEventListener("turbo:load", price);
+window.addEventListener("turbo:render", price);

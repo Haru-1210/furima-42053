@@ -11,8 +11,8 @@ window.addEventListener('turbo:load', () => {
     // 販売手数料 = 価格の10% (小数点切り捨て)
     const fee = Math.floor(inputValue * 0.1);
 
-    // 販売利益 = 価格 - 手数料
-    const profit = inputValue - fee;
+    // 販売利益 = 価格 - 手数料 (小数点切り捨て)
+    const profit = Math.floor(inputValue - fee);
 
     addTaxDom.innerHTML = fee;
     profitDom.innerHTML = profit;

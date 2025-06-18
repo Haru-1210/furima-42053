@@ -80,7 +80,7 @@ group :production do
 end
 
 gem 'devise'
-
 gem 'active_hash'
-
 gem 'rspec-rails', '~> 4.0.0'
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'

@@ -58,3 +58,4 @@ class ItemsController < ApplicationController
   redirect_to root_path if current_user.id != @item.user_id
   end
 end
+

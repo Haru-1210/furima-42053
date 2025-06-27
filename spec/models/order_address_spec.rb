@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   before do
-    @user = FactoryBot.build(:user)
-    @item = FactoryBot.build(:item)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
     @order_address = FactoryBot.build(:order_address, user_id: @user.id, item_id: @item.id)
   end
 
@@ -14,6 +14,7 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it '建物名が空でも購入できる' do
+        @order_address.building_name = ''
         expect(@order_address).to be_valid
       end
     end

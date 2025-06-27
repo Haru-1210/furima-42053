@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_26_070451) do
   end
 
   create_table "addresses", charset: "utf8mb3", force: :cascade do |t|
-    t.string "post_code"
+    t.string "postal_code"
     t.integer "prefecture_id"
     t.string "city"
     t.string "house_number"

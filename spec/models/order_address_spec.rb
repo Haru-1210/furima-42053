@@ -28,7 +28,7 @@ RSpec.describe OrderAddress, type: :model do
       it '郵便番号が半角のハイフンなしでは購入できない' do
         @order_address.postal_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include("Postal code is invalid")
       end
 
       it '都道府県が「---」(id:1)だと購入できない' do

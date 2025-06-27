@@ -13,7 +13,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address).to be_valid
       end
 
-      it '建物名が空でも購入できる'
+      it '建物名が空でも購入できる' do
         expect(@order_address).to be_valid
       end
     end
@@ -55,7 +55,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
       end
 
-            it '電話番号が全角数字だと購入できない' do
+      it '電話番号が全角数字だと購入できない' do
         @order_address.phone_number = '０９０１２３４５６７８'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid")

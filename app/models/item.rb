@@ -13,11 +13,11 @@ class Item < ApplicationRecord
 
   validates :item_name,          presence: true
   validates :description,        presence: true
-  validates :category_id,        presence: true, numericality: { other_than: 0 }
-  validates :condition_id,       presence: true, numericality: { other_than: 0 }
-  validates :shipping_charge_id, presence: true, numericality: { other_than: 0 }
-  validates :prefecture_id,      presence: true, numericality: { other_than: 0 }
-  validates :shipping_day_id,    presence: true, numericality: { other_than: 0 }
+  validates :category_id,        presence: true, numericality: { other_than: 1 }
+  validates :condition_id,       presence: true, numericality: { other_than: 1 }
+  validates :shipping_charge_id, presence: true, numericality: { other_than: 1 }
+  validates :prefecture_id,      presence: true, numericality: { other_than: 1 }
+  validates :shipping_day_id,    presence: true, numericality: { other_than: 1 }
   validates :image,              presence: true
 
   validates :price, numericality: {
